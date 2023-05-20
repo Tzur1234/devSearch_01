@@ -1,5 +1,6 @@
 # PostgreSQL
 # ------------------------------------------------------------------------------
+DATABASE_URL=postgres://devsearch_01_user:gk9pzBSCwh1MpzQrJhkWKBymmzy5tMXN@dpg-chkfl6e7avj217duk3ig-a.frankfurt-postgres.render.com/devsearch_01
 POSTGRES_HOST=postgres
 POSTGRES_PORT=5432
 POSTGRES_DB=devsearch_01
