@@ -5,55 +5,111 @@
 {% load crispy_forms_tags %}
 
 {% block head_title %}{% translate "Sign In" %}{% endblock %}
-
 {% block inner %}
-
-<h1>{% translate "Sign In" %}</h1>
-
 {% get_providers as socialaccount_providers %}
 
-{% if socialaccount_providers %}
-  <p>
-    {% translate "Please sign in with one of your existing third party accounts:" %}
-    {% if ACCOUNT_ALLOW_REGISTRATION %}
-      {% blocktranslate trimmed %}
-        Or, <a href="{{ signup_url }}">sign up</a>
-        for a {{ site_name }} account and sign in below:
-      {% endblocktranslate %}
-    {% endif %}
-  </p>
 
-  <div class="socialaccount_ballot">
 
-    <ul class="socialaccount_providers">
-      {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-    </ul>
+ <section id="contact" class="contact">
+      <div class="container" data-aos="fade-up">
 
-    <div class="login-or">{% translate "or" %}</div>
+        <div class="section-header">
+          <h1>{% translate "Sign In" %}</h1>
+         {% get_providers as socialaccount_providers %}
+          {% if socialaccount_providers %}
+            <p>
+              {% translate "Please sign in with one of your existing third party accounts:" %}
+              {% if ACCOUNT_ALLOW_REGISTRATION %}
+                {% blocktranslate trimmed %}
+                  Or, <a href="{{ signup_url }}">sign up</a>
+                  for a {{ site_name }} account and sign in below:
+                {% endblocktranslate %}
+              {% endif %}
+            </p>
 
-  </div>
+            <div class="socialaccount_ballot">
 
-  {% include "socialaccount/snippets/login_extra.html" %}
+              <ul class="socialaccount_providers">
+                {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+              </ul>
 
-{% else %}
-  {% if ACCOUNT_ALLOW_REGISTRATION %}
-    <p>
-      {% blocktranslate trimmed %}
-        If you have not created an account yet, then please
-        <a href="{{ signup_url }}">sign up</a> first.
-      {% endblocktranslate %}
-    </p>
-  {% endif %}
-{% endif %}
+              <div class="login-or">{% translate "or" %}</div>
 
-<form class="login" method="POST" action="{% url 'account_login' %}">
-  {% csrf_token %}
-  {{ form|crispy }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-  <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% translate "Forgot Password?" %}</a>
-  <button class="primaryAction btn btn-primary" type="submit">{% translate "Sign In" %}</button>
-</form>
+            </div>
+
+            {% include "socialaccount/snippets/login_extra.html" %}
+
+          {% else %}
+            {% if ACCOUNT_ALLOW_REGISTRATION %}
+              <p>
+                {% blocktranslate trimmed %}
+                  If you have not created an account yet, then please
+                  <a href="{{ signup_url }}">sign up</a> first.
+                {% endblocktranslate %}
+              </p>
+            {% endif %}
+          {% endif %}
+        </div>
+
+        <div class="row gx-lg-0 gy-4">
+          <div class="col-lg-4">
+            <div class="info-container d-flex flex-column align-items-center justify-content-center">
+              <div class="info-item d-flex">
+                <i class="bi bi-geo-alt flex-shrink-0"></i>
+                <div>
+                  <h4>Location:</h4>
+                  <p>A108 Adam Street, New York, NY 535022</p>
+                </div>
+              </div><!-- End Info Item -->
+
+              <div class="info-item d-flex">
+                <i class="bi bi-envelope flex-shrink-0"></i>
+                <div>
+                  <h4>Email:</h4>
+                  <p>info@example.com</p>
+                </div>
+              </div><!-- End Info Item -->
+
+              <div class="info-item d-flex">
+                <i class="bi bi-phone flex-shrink-0"></i>
+                <div>
+                  <h4>Call:</h4>
+                  <p>+1 5589 55488 55</p>
+                </div>
+              </div><!-- End Info Item -->
+
+              <div class="info-item d-flex">
+                <i class="bi bi-clock flex-shrink-0"></i>
+                <div>
+                  <h4>Open Hours:</h4>
+                  <p>Mon-Sat: 11AM - 23PM</p>
+                </div>
+              </div><!-- End Info Item -->
+            </div>
+
+          </div>
+
+          <div class="col-lg-8">
+            <div class="info-container d-flex flex-column align-items-center justify-content-center">
+               <form class="login" method="POST" action="{% url 'account_login' %}" role="form" class="php-email-form p-2">
+                {% csrf_token %}
+                {{ form|crispy }}
+                {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                {% endif %}
+                <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% translate "Forgot Password?" %}</a>
+                  <div class="text-center">
+                    <button class="primaryAction btn btn-primary" type="submit">{% translate "Sign In" %}</button>
+                  </div>
+              </form>
+            </div>
+
+          </div><!-- End Contact Form -->
+
+        </div>
+
+      </div>
+    </section>
+
 
 {% endblock %}
