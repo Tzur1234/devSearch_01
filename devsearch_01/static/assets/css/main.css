@@ -1027,7 +1027,7 @@ section {
 }
 
 .testimonials .testimonial-item h3 {
-  font-size: 18px;
+  font-size: 10px;
   font-weight: bold;
   margin: 10px 0 5px 0;
   color: #000;
@@ -1664,7 +1664,8 @@ section {
 
 .recent-posts .post-img {
   max-height: 240px;
-  margin: -30px -30px 15px -30px;
+  /* margin: -30px -30px 15px -30px; */
+  margin: 0px 0px 15px 0px;
   overflow: hidden;
 }
 
@@ -2243,6 +2244,8 @@ section {
   content: ",";
 }
 
+
+
 .blog .blog-details .meta-bottom .share {
   font-size: 16px;
 }
@@ -2250,6 +2253,8 @@ section {
 .blog .blog-details .meta-bottom .share i {
   padding-left: 5px;
 }
+
+
 
 .blog .post-author {
   padding: 20px;
@@ -2266,7 +2271,7 @@ section {
 .blog .post-author h4 {
   font-weight: 600;
   font-size: 22px;
-  margin-bottom: 0px;
+  margin-bottom: 5px;
   padding: 0;
   color: var(--color-default);
 }
@@ -2281,10 +2286,13 @@ section {
 }
 
 .blog .post-author p {
-  font-style: italic;
-  color: rgba(108, 117, 125, 0.8);
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgba(0, 0, 0, 0.8);
   margin-bottom: 0;
 }
+
+
+
 
 /*--------------------------------------------------------------
 # Blog Sidebar
@@ -2303,7 +2311,7 @@ section {
   color: var(--color-default);
 }
 
-.blog .sidebar .sidebar-item+.sidebar-item {
+.blog .sidebar .sidebar-item+ .sidebar-item {
   margin-top: 40px;
 }
 
@@ -2407,6 +2415,47 @@ section {
   color: rgba(34, 34, 34, 0.4);
 }
 
+
+
+/* !!!!!!!!!!  Edit Skill Section */
+.post-author .skills .tags {
+
+  margin-bottom: -10px;
+}
+.post-author .skills .tags ul {
+
+  list-style: none;
+  padding: 0;
+}
+.post-author .skills .tags ul li {
+  display: inline-block;
+}
+.post-author .skills .tags ul a {
+  color: #555555;
+  font-size: 14px;
+  padding: 6px 20px;
+  margin: 0 6px 8px 0;
+  border: 1px solid #d5d5d5;
+  display: inline-block;
+  transition: 0.3s;
+  border-radius: 50px;
+}
+
+.post-author .skills .tags ul a:hover {
+  color: #fff;
+  border: 1px solid var(--color-primary);
+  background: var(--color-primary);
+}
+
+.post-author .skills .tags ul a span {
+  padding-left: 5px;
+  color: rgba(85, 85, 85, 0.8);
+  font-size: 14px;
+}
+/* !!!! */
+
+
+
 .blog .sidebar .tags {
   margin-bottom: -10px;
 }
@@ -2442,6 +2491,49 @@ section {
   color: rgba(85, 85, 85, 0.8);
   font-size: 14px;
 }
+
+
+
+
+/* .mycustomtags{
+
+
+  margin-bottom: -10px;
+
+
+
+  list-style: none;
+  padding: 0;
+
+
+
+  display: inline-block;
+
+
+
+  color: #555555;
+  font-size: 14px;
+  padding: 6px 20px;
+  margin: 0 6px 8px 0;
+  border: 1px solid #d5d5d5;
+  display: inline-block;
+  transition: 0.3s;
+  border-radius: 50px;
+
+
+
+  color: #fff;
+  border: 1px solid var(--color-primary);
+  background: var(--color-primary);
+
+
+
+  padding-left: 5px;
+  color: rgba(85, 85, 85, 0.8);
+  font-size: 14px;
+
+
+} */
 
 /*--------------------------------------------------------------
 # Blog Comments
