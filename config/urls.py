@@ -11,6 +11,7 @@ urlpatterns = [
     path("account/", TemplateView.as_view(template_name="pages/account.html"), name="account"),
     path("project/", TemplateView.as_view(template_name="pages/project.html"), name="project"),
     path("about/", TemplateView.as_view(template_name="pages/about.html"), name="about"),
+    # path("core/" , include('devsearch_01.core.urls', namespace="core")),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
     # User management
