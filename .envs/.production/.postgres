@@ -1,7 +1,9 @@
 # PostgreSQL
 # ------------------------------------------------------------------------------
-POSTGRES_HOST=postgres
+# Reneder
+DATABASE_URL=postgres://devsearch_01_local_user:1MTrEFMRytf89JAX91w71gJlxmlxEWIf@dpg-chmgnhj3cv24nunit8s0-a.frankfurt-postgres.render.com/devsearch_01_local
+POSTGRES_HOST=dpg-chmgnhj3cv24nunit8s0-a.frankfurt-postgres.render.com
 POSTGRES_PORT=5432
-POSTGRES_DB=devsearch_01
-POSTGRES_USER=kXTqFPQwwXWKGVPwbaHFQoxJOHeujQSE
-POSTGRES_PASSWORD=HGSCoEG5jKaHOy0HXOld8muwyctFwXVWgk7Y0k7atSOISIO17ADJpiHlEwDcGmyP
+POSTGRES_DB=devsearch_01_local
+POSTGRES_USER=devsearch_01_local_user
+POSTGRES_PASSWORD=1MTrEFMRytf89JAX91w71gJlxmlxEWIf
