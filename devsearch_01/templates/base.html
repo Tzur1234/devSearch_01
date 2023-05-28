@@ -59,6 +59,7 @@
 </head>
 
 <body>
+    
 
   <header id="header" class="header d-flex align-items-center">
 
@@ -66,20 +67,25 @@
       <a href="{% url 'home' %}" class="logo d-flex align-items-center">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1>DevSearch<span>.</span></h1>
+        {% if request.user.is_authenticated %}
+          <h1>{{request.user.username}}<span>.</span></h1>
+        {% else %}
+          <h1>DevSearch<span>.</span></h1>
+        {% endif %}
       </a>
       <nav id="navbar" class="navbar">
         <ul>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'account' %}">Account</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'project' %}">Project</a>
-          </li>
+          
           <li class="nav-item">
             <a class="nav-link" href="{% url 'about' %}">About</a>
           </li>
           {% if request.user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'core:account' request.user.id %}">Account</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'core:project' %}">Project</a>
+          </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'users:detail' request.user.username %}">My Profile</a>
             </li>
