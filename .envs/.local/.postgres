@@ -1,8 +1,26 @@
 # PostgreSQL
 # ------------------------------------------------------------------------------
-DATABASE_URL=postgres://devsearch_01_user:gk9pzBSCwh1MpzQrJhkWKBymmzy5tMXN@dpg-chkfl6e7avj217duk3ig-a.frankfurt-postgres.render.com/devsearch_01
-POSTGRES_HOST=postgres
+# DATABASE_URL=postgres://kXTqFPQwwXWKGVPwbaHFQoxJOHeujQSE:rFYcyohmktPQomy4LkstRjUf6EP2VxyFdWgApoZdNzBPQby446IJNLSirWX7EAIm@postgres:5432/devsearch_01
+
+# POSTGRES_HOST=postgres
+# POSTGRES_PORT=5432
+# POSTGRES_DB=devsearch_01
+# POSTGRES_USER=kXTqFPQwwXWKGVPwbaHFQoxJOHeujQSE
+# POSTGRES_PASSWORD=rFYcyohmktPQomy4LkstRjUf6EP2VxyFdWgApoZdNzBPQby446IJNLSirWX7EAIm
+
+# DigitalOcean
+# POSTGRES_HOST=db-postgresql-fra1-75645-do-user-13657417-0.b.db.ondigitalocean.com
+# POSTGRES_PORT=25060
+# POSTGRES_DB=defaultdb
+# POSTGRES_USER=doadmin
+# POSTGRES_PASSWORD=AVNS_xI6oHPWvT_R0pPNn_ee
+
+# Reneder
+POSTGRES_HOST=dpg-chmgnhj3cv24nunit8s0-a.frankfurt-postgres.render.com
 POSTGRES_PORT=5432
-POSTGRES_DB=devsearch_01
-POSTGRES_USER=kXTqFPQwwXWKGVPwbaHFQoxJOHeujQSE
-POSTGRES_PASSWORD=rFYcyohmktPQomy4LkstRjUf6EP2VxyFdWgApoZdNzBPQby446IJNLSirWX7EAIm
+POSTGRES_DB=devsearch_01_local
+POSTGRES_USER=devsearch_01_local_user
+POSTGRES_PASSWORD=1MTrEFMRytf89JAX91w71gJlxmlxEWIf
+
+
+
