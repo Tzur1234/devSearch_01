@@ -4,6 +4,8 @@ from django.db import models
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
+from django.db.models.signals import post_save
+
 
 def get_image_location(instance, file_name):
     return f"account_profile_image/{instance.pk}/{file_name}"
@@ -26,6 +28,24 @@ class Account(models.Model):
 class Skill(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=250)
+
+
+# When the user created ...
+def post_save_user_receiver(sender, instance, created, *args, **kwargs):
+    if created:
+
+        # Create new account
+        Account.objects.create(
+            user = instance ,
+            name = instance.username ,
+            title = '<not config>' ,
+            about = '<not config>' ,
+            location = '<not config>'           
+        )
+
+   
+# Signals
+post_save.connect(post_save_user_receiver,sender=User)
 
     
 
