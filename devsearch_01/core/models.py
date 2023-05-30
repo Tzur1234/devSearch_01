@@ -48,43 +48,11 @@ def crop_image(image, size):
     img = img.crop((left, top, right, bottom))
     
     # Save the cropped and resized image
-    if settings.DEBUG:
-        img.save(image.path)
-    else:
-        img.save(image.url)
-
-
+    img.save(image.path)
+    
     print('image.path: ', image.path)
     print('image.url: ', image.url)
 
-# def crop_image(image_path, size):
-#     # Open the image using Pillow
-#     img = TheImage.open(image_path)
-    
-#     # Calculate the aspect ratio of the original image
-#     aspect_ratio = img.width / img.height
-    
-#     # Calculate the target width and height based on the desired size and aspect ratio
-#     target_width = size[0]
-#     target_height = int(target_width / aspect_ratio)
-    
-#     # Resize the image maintaining the aspect ratio
-#     img.thumbnail((target_width, target_height), TheImage.ANTIALIAS)
-    
-#     # Calculate the cropping position based on the resized image dimensions
-#     left = (img.width - size[0]) / 2
-#     top = (img.height - size[1]) / 2
-#     right = (img.width + size[0]) / 2
-#     bottom = (img.height + size[1]) / 2
-
-#     # Crop the resized image
-#     img = img.crop((left, top, right, bottom))
-    
-#     # Get the image file name
-#     # image_name = image_path.split('/')[-1]
-
-#     # Save the cropped and resized image using a relative path
-#     img.save(image_path)
 
 
 
@@ -128,19 +96,20 @@ class Image(models.Model):
         crop_size = (1024, 768)  # Adjust as per your requirements
         
         # Call the crop_image method to crop the uploaded image
-        crop_image(self.file.url, crop_size)
+        crop_image(self.file, crop_size)
 
 class Project(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     image_project = models.ManyToManyField('Image', blank=True)
     title = models.CharField(max_length=250, blank=True, null=True, default='Blank')
     about = models.TextField(blank=True, null=True)
-    link = models.URLField(help_text="a link the deployed project", blank=True, null=True)
+    link = models.URLField(help_text="a link the deployed project", blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     
     def save(self, *args, **kwargs):
-        if not self.url:  # If url field is empty
-            self.url = '/#/'  # Set a default URL
+        if not self.link:  # If link field is empty
+            self.link = f"{settings.DOMAIN}/project/{self.pk}/"  # Set a default link
+            print('self.pk: ', self.pk)
         super().save(*args, **kwargs)
 
 
