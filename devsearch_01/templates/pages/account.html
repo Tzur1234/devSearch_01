@@ -51,7 +51,9 @@
                   
                 <div class="col-xl-4 col-md-6 portfolio-item filter-app">
                   <div class="portfolio-wrap">
-                    <a href="{{ project.image_project.all.0.file.url }}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{{ project.image_project.all.0.file.url }}" class="img-fluid" alt=""></a>
+                    <a href="#" data-gallery="portfolio-gallery-app" class="glightbox">
+                      <img src="{{ project.image_project.all.0.file.url }}" class="img-fluid" alt="">
+                    </a>
                     <div class="portfolio-info">
                       <h4><a href="portfolio-details.html" title="More Details">{{ project.title }}</a></h4>
                       <p>{{ project.created_at }}</p>

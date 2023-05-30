@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 from django.db import models
 from django.contrib.auth import get_user_model
@@ -47,8 +48,43 @@ def crop_image(image, size):
     img = img.crop((left, top, right, bottom))
     
     # Save the cropped and resized image
-    img.save(image.path)
+    if settings.DEBUG:
+        img.save(image.path)
+    else:
+        img.save(image.url)
 
+
+    print('image.path: ', image.path)
+    print('image.url: ', image.url)
+
+# def crop_image(image_path, size):
+#     # Open the image using Pillow
+#     img = TheImage.open(image_path)
+    
+#     # Calculate the aspect ratio of the original image
+#     aspect_ratio = img.width / img.height
+    
+#     # Calculate the target width and height based on the desired size and aspect ratio
+#     target_width = size[0]
+#     target_height = int(target_width / aspect_ratio)
+    
+#     # Resize the image maintaining the aspect ratio
+#     img.thumbnail((target_width, target_height), TheImage.ANTIALIAS)
+    
+#     # Calculate the cropping position based on the resized image dimensions
+#     left = (img.width - size[0]) / 2
+#     top = (img.height - size[1]) / 2
+#     right = (img.width + size[0]) / 2
+#     bottom = (img.height + size[1]) / 2
+
+#     # Crop the resized image
+#     img = img.crop((left, top, right, bottom))
+    
+#     # Get the image file name
+#     # image_name = image_path.split('/')[-1]
+
+#     # Save the cropped and resized image using a relative path
+#     img.save(image_path)
 
 
 
@@ -92,7 +128,7 @@ class Image(models.Model):
         crop_size = (1024, 768)  # Adjust as per your requirements
         
         # Call the crop_image method to crop the uploaded image
-        crop_image(self.file, crop_size)
+        crop_image(self.file.url, crop_size)
 
 class Project(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
