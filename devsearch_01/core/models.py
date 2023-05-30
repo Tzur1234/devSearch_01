@@ -5,7 +5,7 @@ from django.db import models
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, pre_save
 
 # Pillow
 from PIL import Image as TheImage
@@ -103,14 +103,8 @@ class Project(models.Model):
     image_project = models.ManyToManyField('Image', blank=True)
     title = models.CharField(max_length=250, blank=True, null=True, default='Blank')
     about = models.TextField(blank=True, null=True)
-    link = models.URLField(help_text="a link the deployed project", blank=True)
+    link = models.URLField(help_text="a link the deployed project")
     created_at = models.DateTimeField(auto_now_add=True)
-    
-    def save(self, *args, **kwargs):
-        if not self.link:  # If link field is empty
-            self.link = f"{settings.DOMAIN}/project/{self.pk}/"  # Set a default link
-            print('self.pk: ', self.pk)
-        super().save(*args, **kwargs)
 
 
 
@@ -126,10 +120,14 @@ def post_save_user_receiver(sender, instance, created, *args, **kwargs):
             about = '<not config>' ,
             location = '<not config>'           
         )
-
+   
+            
    
 # Signals
 post_save.connect(post_save_user_receiver,sender=User)
+
+
+
 
     
 

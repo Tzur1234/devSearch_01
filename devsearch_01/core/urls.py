@@ -11,5 +11,6 @@ urlpatterns = [
     # project
 
     path("project/<int:pk>/", TemplateView.as_view(template_name="pages/project.html"), name="project"), 
+    path("project/default/", TemplateView.as_view(template_name="pages/default.html"), name="default-project"), 
     
 ]
