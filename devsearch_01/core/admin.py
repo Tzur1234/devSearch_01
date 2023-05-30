@@ -14,7 +14,7 @@ class ImageInline(admin.TabularInline):
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):     
     list_display = ('user', 'title', 'about', 'link', )
-    inlines = [ImageInline]
+    # inlines = [ImageInline]
     
 @admin.register(Account)
 class AccountAdmin(admin.ModelAdmin):     
