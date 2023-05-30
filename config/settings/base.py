@@ -266,3 +266,5 @@ SOCIALACCOUNT_FORMS = {"signup": "devsearch_01.users.forms.UserSocialSignupForm"
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+
+MEDIA_BASE=env("MEDIA_BASE")
