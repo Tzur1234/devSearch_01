@@ -11,20 +11,4 @@ class UserDetailForm(forms.Form):
 class ProjectForm(forms.ModelForm):
     class Meta:
         model = Project
-        fields = ('image_project', 'title', 'about', 'link', )
-
-    def save(self, commit=True):
-        project = super().save(commit=False)
-
-        # Check if no images were submitted
-        if not self.cleaned_data['image_project']:
-            # Create a default image and attach it to the project
-            project.image_project.clear()
-
-            default_image = Image.objects.create()
-            project.image_project.add(default_image)
-
-        
-        project = super().save(commit=True)
-        
-        return project
+        fields = ('title', 'about', 'link', )
