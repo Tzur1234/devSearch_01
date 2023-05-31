@@ -17,7 +17,6 @@ def get_image_location(instance, file_name):
 def get_default_image_path():
     return f"account_profile_image/default/default.png"
 
-
 def get_project_image_location(instance, file_name):
     return f"profile_image/{instance.pk}/{file_name}"
 
