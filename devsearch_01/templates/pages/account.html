@@ -52,7 +52,7 @@
                 <div class="col-xl-4 col-md-6 portfolio-item filter-app">
                   <div class="portfolio-wrap">
                     <a href="#" data-gallery="portfolio-gallery-app" class="glightbox">
-                      <img src="{{ project.image_project.all.0.file.url }}" class="img-fluid" alt="">
+                      <img src="{{ project.image_set.all.0.file.url }}" class="img-fluid" alt="">
                     </a>
                     <div class="portfolio-info">
                       <h4><a href="portfolio-details.html" title="More Details">{{ project.title }}</a></h4>
@@ -65,7 +65,8 @@
 
                 <div class="col-xl-4 col-md-6 portfolio-item filter-app">
                   <div class="portfolio-wrap">
-                    <a href="{% static 'assets/img/portfolio/app-1.jpg' %}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{% static 'assets/img/portfolio/app-1.jpg' %}" class="img-fluid" alt=""></a>
+                    <a href="{% static 'assets/img/portfolio/app-1.jpg' %}" data-gallery="portfolio-gallery-app" class="glightbox">
+                      <img src="{% static 'assets/img/portfolio/app-1.jpg' %}" class="img-fluid" alt=""></a>
                     <div class="portfolio-info">
                       <h4><a href="portfolio-details.html" title="More Details">App 1</a></h4>
                       <p>Lorem ipsum, dolor sit amet consectetur</p>
@@ -255,11 +256,12 @@
                 data-aos-delay="100"
               >
                 <div class="member text-center">
-                  <img
-                    src="{{ user.account.profile_image.url }}"
-                    class="img-fluid rounded-circle flex-shrink-0 mb-3"
-                    alt=""
+                  <img src="{{ user.account.profile_image.url }}"
+                      class="img-fluid rounded-circle flex-shrink-0 mb-3"
+                      alt=""
+                      style="border-radius: 50%; object-fit: cover; width: 200px; height: 200px;"
                   />
+
                   <h4>{{user.account.name}}</h4>
                   <span>{{user.account.title}}</span>
                   <div class="social justify-content-between pt-2">
