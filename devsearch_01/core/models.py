@@ -64,15 +64,15 @@ class Account(models.Model):
     profile_image = models.ImageField(upload_to=get_image_location, default=get_default_image_path)
     location = models.CharField(max_length=250, null=True, blank=True)
 
-    def save(self, *args, **kwargs):
-        # Call the parent save() method to ensure other model operations are performed
-        super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     # Call the parent save() method to ensure other model operations are performed
+    #     super().save(*args, **kwargs)
         
-        # Specify the desired size for cropping
-        crop_size = (600 , 600)  # Adjust as per your requirements
+    #     # Specify the desired size for cropping
+    #     crop_size = (600 , 600)  # Adjust as per your requirements
         
-        # Call the crop_image method to crop the uploaded image
-        crop_image(self.profile_image, crop_size)
+    #     # Call the crop_image method to crop the uploaded image
+    #     crop_image(self.profile_image, crop_size)
 
     def __str__(self) -> str:
         return f"Account -- > {self.user.username}"
@@ -86,21 +86,21 @@ class Tool(models.Model):
     tool = models.CharField(max_length=250)
 
 class Image(models.Model):
+    project = models.ForeignKey('Project', on_delete=models.CASCADE)
     file = models.ImageField(verbose_name='Project Image', upload_to=get_project_image_location, default=get_default_project_image_path)
 
-    def save(self, *args, **kwargs):
-        # Call the parent save() method to ensure other model operations are performed
-        super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     # Call the parent save() method to ensure other model operations are performed
+    #     super().save(*args, **kwargs)
         
-        # Specify the desired size for cropping
-        crop_size = (1024, 768)  # Adjust as per your requirements
+    #     # Specify the desired size for cropping
+    #     crop_size = (1024, 768)  # Adjust as per your requirements
         
-        # Call the crop_image method to crop the uploaded image
-        crop_image(self.file, crop_size)
+    #     # Call the crop_image method to crop the uploaded image
+    #     crop_image(self.file, crop_size)
 
 class Project(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    image_project = models.ManyToManyField('Image', blank=True)
     title = models.CharField(max_length=250, blank=True, null=True, default='Blank')
     about = models.TextField(blank=True, null=True)
     link = models.URLField(help_text="a link the deployed project")
@@ -121,10 +121,18 @@ def post_save_user_receiver(sender, instance, created, *args, **kwargs):
             location = '<not config>'           
         )
    
-            
+# When the a project is created ...
+def post_save_project_receiver(sender, instance, created, *args, **kwargs):
+    if created:
+        # Create default image
+        Image.objects.create(
+            project = instance          
+        )
+  
    
 # Signals
 post_save.connect(post_save_user_receiver,sender=User)
+post_save.connect(post_save_project_receiver,sender=Project)
 
 
 

@@ -6,15 +6,12 @@ admin.site.register(Skill)
 admin.site.register(Tool)
 
 
-# the intermediate table generated for the many-to-many relationship between Project and Image.
-class ImageInline(admin.TabularInline):
-    model = Project.image_project.through 
 
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):     
     list_display = ('user', 'title', 'about', 'link', )
-    # inlines = [ImageInline]
+
     
 @admin.register(Account)
 class AccountAdmin(admin.ModelAdmin):     
@@ -23,5 +20,15 @@ class AccountAdmin(admin.ModelAdmin):
 
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):     
-    list_display = ('file', )
+    list_display = ('project_author' , 'project_title' , 'file', )
+
+    def project_title(self, obj):
+        return obj.project.title
+
+    def project_author(self, obj):
+        return obj.project.user.username
+    
+    # Add description to the field
+    project_title.description = "Project Title"
+    project_author.description = "User"
     
